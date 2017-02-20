@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>..::GAME::..</title>
+
+        <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
+        <script type="text/javascript" src="lib/sound.js"></script>
+        <script type="text/javascript" src="_world.js"></script>
+        <script type="text/javascript" src="_eGravity.js"></script>
+        <script type="text/javascript" src="_main.js"></script>
+
+        <style type="text/css">
+            body{margin: 0 auto; text-align: center; top: 15px; position: relative}
+            #screen{ border: 1px solid #ccc;}            
+        </style>
+    </head>
+        <body>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    Game.load($('#screen'));
+                });
+
+                function more() {
+                    if (!(Game.settings.defaultDistance > 3)) {
+                        Game.settings.defaultDistance += 1;
+                    }
+
+                }
+                function less() {
+                    Game.settings.defaultDistance -= 1;
+                    if (Game.settings.defaultDistance <= 0) Game.settings.defaultDistance = 1;
+                }
+
+                function gerenciarColisoes() {
+                    if ($('.btnColisions').attr('checked')) {
+                        World.settings.hasColision = true;
+
+                    } else {
+                        World.settings.hasColision = false;
+                    
+                    }                                                 
+                
+                }                
+            </script>
+            <canvas id="screen" width="800" height="500"></canvas>
+            <br />
+            <button onclick="more()">Velocidade +</button>
+            <button onclick="less()">Velocidade -</button>
+            <label>
+                <input type="checkbox" checked="checked" onchange="gerenciarColisoes()" class="btnColisions"/>Detectar Colisões
+            </label>
+        </body>
+</html>
